@@ -1,7 +1,7 @@
 
 import json
 
-f=open('C:\\21pt23\\Input data\\level1a.json')
+f=open('C:\\21pt23\\Input data\\level1b.json')
 data=json.load(f)
 
 distances={}
@@ -87,6 +87,6 @@ for vehicle in data['vehicles'].keys():
 #for (key, value) in output.items():
     #print(key, value)
 
-outfile=open('level1a\\level1a_output.json', "w")
+outfile=open('level1b\\level1b_output.json', "w")
 json.dump(output1, outfile)
 
