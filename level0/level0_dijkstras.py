@@ -16,25 +16,8 @@ for (key, value) in distances.items():
     sortedVal=dict(sorted(value.items(), key=lambda x:x[1]))
     distances.update({key: sortedVal})
 
-#print(distances)
-
-
-visited=[]
-
-def MST(dist, start):
-    visited.append(start)
-    path=[start]
-    n=''
-    for (next, d) in dist[start].items():
-        if next not in visited:
-            n=next
-            break
-    if n!='':
-        visited.append(n)
-        path.extend(MST(dist, n))
-    return path
-
 output={}
+visited=[]
 
 for vehicle in data['vehicles'].keys():
     output[vehicle]={}
@@ -46,15 +29,3 @@ for vehicle in data['vehicles'].keys():
         rdist[next]=data['restaurants'][rest]["neighbourhood_distance"][i]
     rdist=dict(sorted(rdist.items(), key=lambda x:x[1]))
     start=list(rdist.keys())[0]
-    path=MST(distances, start)
-    path.insert(0, rest)
-    path.append(rest)
-    output[vehicle]['path']=path
-
-for(key, value) in output.items():
-    print(key, value)
-
-outfile=open('level0\\output0.json', "w")
-json.dump(output, outfile)
-
-
